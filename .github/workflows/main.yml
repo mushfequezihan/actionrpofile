@@ -4,12 +4,18 @@ on:
     branches:
       - main
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Code Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
     
       - name: Build Maven
         run: mvn install   
@@ -19,7 +25,9 @@ jobs:
     needs: build
     steps:
       - name: Code Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Run Tests on main branch
         run: mvn test
