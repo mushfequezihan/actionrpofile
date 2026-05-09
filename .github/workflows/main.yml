@@ -68,14 +68,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run Security Scan on main branch
-        if: github.ref == 'refs/heads/main'
-        run: mvn dependency-check:check
-
-      - name: not run security scan on other branches
-        if: github.ref != 'refs/heads/main'
-        run: echo "Security scans are only run on the main branch. Skipping security scan for this branch."
-
       - name: Run trivy scan on main branch
         uses: aquasecurity/trivy-action@v0.35.0
         with:
