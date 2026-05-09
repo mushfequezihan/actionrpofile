@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 env:
-  ECR_REPOSITORY: vprofile-repository
+  ECR_REPOSITORY: vpro-appimage
 
 jobs:
   build:
