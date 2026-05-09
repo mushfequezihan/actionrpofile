@@ -48,7 +48,13 @@ jobs:
           fetch-depth: 0
 
       - name: Run Tests on main branch
+        if: github.ref == 'refs/heads/main'
         run: mvn test
 
       - name: Checkstyle Report
+        if: github.ref == 'refs/heads/main'
         run: mvn checkstyle:checkstyle
+
+      - name: not run tests on other branches
+        if: github.ref != 'refs/heads/main'
+        run: echo "Tests are only run on the main branch. Skipping tests for this branch."
